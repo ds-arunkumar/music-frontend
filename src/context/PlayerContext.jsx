@@ -10,7 +10,7 @@ const PlayerContextProvider = (props)=>{
   const seekBg = useRef();
   const seekBar = useRef();
 
-  const url = 'http://localhost:4000';
+  const url = 'https://music-backed.onrender.com';
 
   const [songsData,setSongsData] = useState([]);
   const [albumsData,setAlbumsData]= useState([]);
@@ -88,7 +88,9 @@ const PlayerContextProvider = (props)=>{
       setSongsData(response.data.songs);
       setTrack(response.data.songs[0])
 
-    } catch(error){}
+    } catch(error){
+      console.log(error)
+    }
   }
 
   const getAlbumsData = async () => {
@@ -96,6 +98,7 @@ const PlayerContextProvider = (props)=>{
       const response = await axios.get(`${url}/api/album/list`);
       setAlbumsData(response.data.albums);
     } catch (error){
+      console.log(error)
 
     }
   }
